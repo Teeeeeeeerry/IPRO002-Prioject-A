@@ -1,9 +1,4 @@
-/*import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;*/
-
-
-public class ProjectA {
+public class Main {
 
     public static void main(String[] args) {
             //Account account = new Account("My Personal Account");
@@ -24,7 +19,7 @@ public class ProjectA {
 
 class Account {
    
-
+//ddddd
 
 }   
 
