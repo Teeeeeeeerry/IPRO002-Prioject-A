@@ -17,12 +17,6 @@ public class Main {
 
 }
 
-class Account {
-   
-
-
-}   
-
 abstract class Transaction {
     protected final double amount;
     protected final String description;
