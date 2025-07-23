@@ -18,7 +18,33 @@ public class ProjectA {
             System.out.println("5. Exit");
             System.out.print("Select option: ");
             
-            if 
+            int option = In.nextInt();
+            
+            if (option == 1) {
+                addIncome(account);
+            } 
+            else if (option == 2) {
+                addExpense(account);
+            } 
+            else if (option == 3) {
+                displayTransactions(account);
+            } 
+            else if (option == 4) {
+                account.sortTransactions();
+                System.out.println("Transactions sorted by date");
+            } 
+            else if (option == 5) {
+                filterByCategory(account);
+            } 
+            else if (option == 6) {
+                ReportGenerator.generateReport(account);
+            } 
+            else if (option == 7) {
+                running = false;
+            } 
+            else {
+                System.out.println("Invalid option");
+            }
 
         }
     }
