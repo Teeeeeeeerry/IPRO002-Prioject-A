@@ -7,7 +7,7 @@ public class ProjectA {
 
     public static void main(String[] args) {
 
-            //Account account = new Account("My Personal Account");
+            Account account = new Account("My Personal Account");
             boolean running = true;
             while (running) {
             System.out.println("\n===== Personal Finance Manager =====");
@@ -18,8 +18,7 @@ public class ProjectA {
             System.out.println("5. Exit");
             System.out.print("Select option: ");
             
-            //branch should make
-            //use if-else to make it
+            if 
 
         }
     }
