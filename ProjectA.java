@@ -68,7 +68,12 @@ class Account {
         System.out.println("Transaction added successfully");
     }
 
-    //delete transaction function should make
+    public void removeTransaction(int index) {
+        if (index >= 0 && index < transactions.size()) {
+            transactions.remove(index);
+            System.out.println("Transaction removed");
+        }
+    }
     
     public List<Transaction> getTransactions() {
         return Collections.unmodifiableList(transactions);
