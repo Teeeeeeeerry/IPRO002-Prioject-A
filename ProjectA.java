@@ -70,7 +70,7 @@ abstract class Transaction {
     public Transaction(double amount, String description) {
         this.amount = amount;
         this.description = description;
-        this.date /* = ? no idea, finish it later*/;
+        this.date = data;
 
     }
 
