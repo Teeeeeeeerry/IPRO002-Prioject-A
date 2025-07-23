@@ -82,7 +82,9 @@ class Account {
 
     //get transction by category
 
-    //sort transction
+    public void sortTransactions() {
+        transactions.sort(new FinanceComparator());
+    }
 
     public String getName() {
         return name;
