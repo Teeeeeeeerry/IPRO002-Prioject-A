@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Comparator;
 
 
 public class ProjectA {
@@ -81,7 +82,6 @@ class Account {
 
 
     //get transction by category
-
     public void sortTransactions() {
         transactions.sort(new FinanceComparator());
     }
@@ -90,6 +90,7 @@ class Account {
         return name;
     }
 
+   
 }
 
 abstract class Transaction {
@@ -98,14 +99,25 @@ abstract class Transaction {
     protected final String description;
     protected final String date;
 
-    public Transaction(double amount, String description) {
+    // made sure to add some throw and catch exception errors if the user has any invalid values
+    public Transaction(double amount, String description, String date) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("ERROR: Amount value must be a positive number");
+        } else if (date == null){
+            throw new IllegalArgumentException("ERROR: Valid date is required");
+        } else if (description == null ) {
+            throw new IllegalArgumentException("ERROR: Valid description is required");
+        }
         this.amount = amount;
         this.description = description;
-        this.date = data;
-
+        this.date = date;
     }
 
-    public abstract void displayDetails();
+    public abstract void displayDetails(); 
+
+    public String getDescription() {
+        return description;
+    }
 
     public double getAmount() {
         return amount;
@@ -114,6 +126,11 @@ abstract class Transaction {
     public String getDate() {
         return date;
     }
+
+    public String toString() {
+        return "Amount: " + amount + " Date: " + date + " Description: " + description;
+    }
+    
 }
 
 class Income extends Transaction {
@@ -150,3 +167,5 @@ class Expense extends Transaction {
 enum Category {
     FOOD, TRANSPORT, ENTERTAINMENT, OTHER
 }
+
+
