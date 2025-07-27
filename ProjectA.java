@@ -71,9 +71,11 @@ public class ProjectA {
         System.out.println("Enter the date (YYYY-MM-DD): ");
         String date = In.nextLine();
         System.out.println("Select a category: ");
+
         for(int i = 0; i < Category.values().length; i++ ) {
             System.out.println((i + 1)+ ": " + Category.values());
         }
+
         int choice = In.nextInt();
         Category category = Category.values()[choice - 1];
 
@@ -87,10 +89,29 @@ public class ProjectA {
         if (transactions.isEmpty()) {
             System.out.println("There are no Transactions"); 
             return;
-        } 
-        for (Transaction i : transactions) {
+        } else for (Transaction i : transactions) {
             i.displayDetails();
         }
+    }
+
+    public static void filterByCategory(Account account) {
+        System.out.println("Filter By Category: ");
+        for (int i = 0; 1 < Category.values().length; i++) {
+            System.out.println((i + 1)+ ": " + Category.values()[i]);
+        }
+        int choice = In.nextInt();
+        Category filter = Category.values()[choice - 1];
+
+        for (Transaction t : account.getTransactions()) {
+            if (t instanceof Expense) {
+                Expense e = (Expense) t;
+                if (e.getCategory() == filter) {
+                    e.displayDetails();
+                }
+            }
+
+        }
+
     }
 
 }
@@ -206,6 +227,22 @@ class Expense extends Transaction {
 
 enum Category {
     FOOD, TRANSPORT, ENTERTAINMENT, OTHER
+}
+
+//filters by date in ascending order 
+class FinanceComparator implements Comparator<Transaction> {
+    @Override
+    public int compare(Transaction t, Transaction t2) {
+        return t.getDate().compareTo(t2.getDate());
+    }
+
+}
+
+class ReportGenerator {
+    public static void generateReport(Account account) {
+
+    }
+
 }
 
 
