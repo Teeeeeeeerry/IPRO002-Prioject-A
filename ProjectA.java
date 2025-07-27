@@ -51,7 +51,47 @@ public class ProjectA {
     }
 
     //function part
+    public static void addIncome(Account account) {
+        System.out.println("Add the income: "); 
+        double amount = In.nextDouble();
+        System.out.println("Enter contents of description: "); 
+        String description = In.nextLine();
+        System.out.println("Enter the date (YYYY-MM-DD): ");
+        String date = In.nextLine();
+
+        Income income = new Income(amount, description, date);
+        account.addTransaction(income);
+    }
+
+    public static void addExpense(Account account) {
+        System.out.println("Add the income: "); 
+        double amount = In.nextDouble();
+        System.out.println("Enter contents of description: "); 
+        String description = In.nextLine();
+        System.out.println("Enter the date (YYYY-MM-DD): ");
+        String date = In.nextLine();
+        System.out.println("Select a category: ");
+        for(int i = 0; i < Category.values().length; i++ ) {
+            System.out.println((i + 1)+ ": " + Category.values());
+        }
+        int choice = In.nextInt();
+        Category category = Category.values()[choice - 1];
+
+        Expense expense = new Expense(amount, description, date, category);
+        account.addTransaction(expense);
+
+    } 
     
+    public static void displayTransactions(Account account) {
+        List<Transaction> transactions = account.getTransactions();
+        if (transactions.isEmpty()) {
+            System.out.println("There are no Transactions"); 
+            return;
+        } 
+        for (Transaction i : transactions) {
+            i.displayDetails();
+        }
+    }
 
 }
 
@@ -135,8 +175,8 @@ abstract class Transaction {
 
 class Income extends Transaction {
 
-    public Income(double amount, String description) {
-        super(amount, description);
+    public Income(double amount, String description, String date) {
+        super(amount, description, date);
     }
 
     @Override
@@ -149,8 +189,8 @@ class Expense extends Transaction {
 
     private final Category category;
 
-    public Expense(double amount, String description, Category category) {
-        super(amount, description);
+    public Expense(double amount, String description, String date, Category category) {
+        super(amount, description, date);
         this.category = category;
     }
 
