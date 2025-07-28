@@ -74,8 +74,10 @@ public class ProjectA {
         String date = In.nextLine();
         System.out.println("Select a category: ");
 
-        for(int i = 0; i < Category.values().length; i++ ) {
-            System.out.println((i + 1)+ ": " + Category.values());
+        int i = 1;
+        for(Category c : Category.values()) {
+            System.out.println((i)+ ": " + c.name());
+            i++;
         }
 
         int choice = In.nextInt();
