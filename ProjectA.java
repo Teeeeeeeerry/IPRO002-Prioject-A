@@ -58,7 +58,7 @@ public class ProjectA {
         double amount = In.nextDouble();
         System.out.println("Enter contents of description: "); 
         String description = In.nextLine();
-        System.out.println("Enter the date (DD-MM-YYYY): ");
+        System.out.println("Enter the date (YYYY-MM-DD): ");
         String date = In.nextLine();
 
         Income income = new Income(amount, description, date);
@@ -66,7 +66,7 @@ public class ProjectA {
     }
 
     public static void addExpense(Account account) {
-        System.out.println("Add the income: "); 
+        System.out.println("Add the Expense: "); 
         double amount = In.nextDouble();
         System.out.println("Enter contents of description: "); 
         String description = In.nextLine();
@@ -183,9 +183,11 @@ abstract class Transaction {
     public Transaction(double amount, String description, String date) {
         if (amount <= 0) {
             throw new IllegalArgumentException("ERROR: Amount value must be a positive number");
-        } else if (date == null){
+        } 
+        if(date == null){
             throw new IllegalArgumentException("ERROR: Valid date is required");
-        } else if (description == null ) {
+        }
+        if (description == null ) {
             throw new IllegalArgumentException("ERROR: Valid description is required");
         }
         this.amount = amount;
