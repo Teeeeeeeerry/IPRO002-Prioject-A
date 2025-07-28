@@ -11,12 +11,14 @@ public class ProjectA {
             Account account = new Account("My Personal Account");
             boolean running = true;
             while (running) {
-            System.out.println("\n===== Personal Finance Manager =====");
+            System.out.println("\n===== Finance Manager =====");
             System.out.println("1. Add Income");
             System.out.println("2. Add Expense");
             System.out.println("3. View Transactions");
-            System.out.println("4. Generate Report");
-            System.out.println("5. Exit");
+            System.out.println("4. Sort Transactions");
+            System.out.println("5. Filter Expenses by Category");
+            System.out.println("6. Generate Report");
+            System.out.println("7. Exit");
             System.out.print("Select option: ");
             
             int option = In.nextInt();
