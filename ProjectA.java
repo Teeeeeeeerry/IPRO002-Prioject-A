@@ -58,7 +58,7 @@ public class ProjectA {
         double amount = In.nextDouble();
         System.out.println("Enter contents of description: "); 
         String description = In.nextLine();
-        System.out.println("Enter the date (YYYY-MM-DD): ");
+        System.out.println("Enter the date (DD-MM-YYYY): ");
         String date = In.nextLine();
 
         Income income = new Income(amount, description, date);
@@ -70,7 +70,7 @@ public class ProjectA {
         double amount = In.nextDouble();
         System.out.println("Enter contents of description: "); 
         String description = In.nextLine();
-        System.out.println("Enter the date (YYYY-MM-DD): ");
+        System.out.println("Enter the date (DD-MM-YYYY): ");
         String date = In.nextLine();
         System.out.println("Select a category: ");
 
@@ -186,7 +186,7 @@ abstract class Transaction {
         } 
         if(date == null){
             throw new IllegalArgumentException("ERROR: Valid date is required");
-        }
+        } 
         if (description == null ) {
             throw new IllegalArgumentException("ERROR: Valid description is required");
         }
