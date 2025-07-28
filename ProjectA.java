@@ -91,7 +91,8 @@ public class ProjectA {
         if (transactions.isEmpty()) {
             System.out.println("There are no Transactions"); 
             return;
-        } else for (Transaction i : transactions) {
+        } 
+         for (Transaction i : transactions) {
             i.displayDetails();
         }
     }
