@@ -59,7 +59,7 @@ public class ProjectA {
         double amount = In.nextDouble();
         System.out.println("Enter contents of description: "); 
         String description = In.nextLine();
-        System.out.println("Enter the date (DD-MM-YYYY): ");
+        System.out.println("Enter the date (YYYY-MM-DD): ");
         String date = In.nextLine();
         System.out.println("Select a category: ");
 
@@ -105,7 +105,7 @@ public class ProjectA {
         double amount = In.nextDouble();
         System.out.println("Enter contents of description: "); 
         String description = In.nextLine();
-        System.out.println("Enter the date (DD-MM-YYYY): ");
+        System.out.println("Enter the date (YYYY-MM-DD): ");
         String date = In.nextLine();
         System.out.println("Select a category: ");
 
@@ -183,7 +183,7 @@ public class ProjectA {
 
 
     public static void displayTransactions(Account account) {
-        List<Transaction> transactions = account.getTransactions();
+        List<Transaction> transactions = new ArrayList<>(account.getTransactions());
         if (transactions.isEmpty()) {
             System.out.println("There are no Transactions"); 
             return;
@@ -261,21 +261,16 @@ class Account {
         this.name = name;
     }
 
-    public void addTransaction(Income income) {
-        transactions.add(income);
-        System.out.println("Income added successfully");
+    public void addTransaction(Transaction transaction) {
+        transactions.add(transaction);
+        System.out.println("Transaction added successfully");
     }
 
-    public void addTransaction(Expense expense) {
-        transactions.add(expense);
-        System.out.println("Expense added successfully");
+    public void addTransaction(double amount, String description, String date, Category category) {
+        Income ic = new Income(amount, description, date, category);
+        transactions.add(ic);
+        System.out.println("Transaction added successfully");
     }
-    
-    // public void addTransaction(double amount, String description, String date, Category category) {
-    //     Transaction transaction = new Transaction (amount, description, date, category);
-    //     transactions.add(transaction);
-    //     System.out.println("Transaction added successfully");
-    // }
 
     public void removeTransaction(int index) {
         if (index >= 0 && index < transactions.size()) {
@@ -284,9 +279,12 @@ class Account {
         }
     }
 
-    public void removeTransaction(Income income) {
-        transactions.remove(income);
-        System.out.println("Transaction removed");
+    public void removeTransaction(Income ic) {
+        transactions.remove(ic);
+        // if (index >= 0 && index < transactions.size()) {
+        //     transactions.remove(index);
+        //     System.out.println("Transaction removed");
+        // }
     }
     
     public List<Transaction> getTransactions() {
@@ -414,18 +412,15 @@ class ReportGenerator {
         // Calculate totals
         double totalIncome = 0;
         double totalExpense = 0;
-        HashMap<Category, Double> categoryIncome = new HashMap<>();
         HashMap<Category, Double> categoryExpenses = new HashMap<>();
         
         for (Transaction t : account.getTransactions()) {
             if (t instanceof Income) {
                 totalIncome += t.getAmount();
-                Category catIn = ((Income)t).getCategory();
-                categoryExpenses.put(catIn, categoryExpenses.getOrDefault(catIn, 0.0) + t.getAmount());
             } else if (t instanceof Expense) {
                 totalExpense += t.getAmount();
-                Category catEx = ((Expense)t).getCategory();
-                categoryExpenses.put(catEx, categoryExpenses.getOrDefault(catEx, 0.0) + t.getAmount());
+                Category cat = ((Expense)t).getCategory();
+                categoryExpenses.put(cat, categoryExpenses.getOrDefault(cat, 0.0) + t.getAmount());
             }
         }
         
@@ -436,11 +431,6 @@ class ReportGenerator {
         System.out.println("Net Balance: $" + (totalIncome - totalExpense));
         
         // Print category breakdown
-        System.out.println("\nIncome by Category:");
-        for (Category c : Category.values()) {
-            System.out.println("- " + c + ": $" + categoryIncome.getOrDefault(c, 0.0));
-        }
-
         System.out.println("\nExpenses by Category:");
         for (Category c : Category.values()) {
             System.out.println("- " + c + ": $" + categoryExpenses.getOrDefault(c, 0.0));
