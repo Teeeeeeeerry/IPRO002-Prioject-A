@@ -141,16 +141,21 @@ class Account {
         this.name = name;
     }
 
-    public void addTransaction(Transaction transaction) {
-        transactions.add(transaction);
-        System.out.println("Transaction added successfully");
+    public void addTransaction(Income income) {
+        transactions.add(income);
+        System.out.println("Income added successfully");
     }
 
-    public void addTransaction(double amount, String description, String date, Category category) {
-        Income income = new Income(amount, description, date, category);
-        transactions.add(income);
-        System.out.println("Transaction added successfully");
+    public void addTransaction(Expense expense) {
+        transactions.add(expense);
+        System.out.println("Expense added successfully");
     }
+    
+    // public void addTransaction(double amount, String description, String date, Category category) {
+    //     Transaction transaction = new Transaction (amount, description, date, category);
+    //     transactions.add(transaction);
+    //     System.out.println("Transaction added successfully");
+    // }
 
     public void removeTransaction(int index) {
         if (index >= 0 && index < transactions.size()) {
