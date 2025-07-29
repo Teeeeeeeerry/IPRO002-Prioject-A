@@ -60,7 +60,17 @@ public class ProjectA {
         String description = In.nextLine();
         System.out.println("Enter the date (DD-MM-YYYY): ");
         String date = In.nextLine();
+        System.out.println("Select a category: ");
 
+        int i = 1;1
+        for(Category c : Category.values()) {
+            System.out.println((i)+ ": " + c.name());
+            i++;
+        }
+
+        int choice = In.nextInt();
+        Category category = Category.values()[choice - 1];
+    
         Income income = new Income(amount, description, date, category);
         account.addTransaction(income);
     }
