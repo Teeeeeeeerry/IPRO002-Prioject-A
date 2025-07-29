@@ -227,13 +227,20 @@ abstract class Transaction {
 
 class Income extends Transaction {
 
+    private final Category category;
+
     public Income(double amount, String description, String date, Category category) {
         super(amount, description, date);
+        this.category = category;
     }
 
     @Override
     public void displayDetails() {
-        System.out.println("Income: $" + amount + " | " + description + " | " + date);
+        System.out.println("Income: $" + amount + " | " + description + " | " + date + " | " + category);
+    }
+
+    public Category getCategory() {
+        return category;
     }
 }
 
