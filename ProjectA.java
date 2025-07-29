@@ -61,7 +61,7 @@ public class ProjectA {
         System.out.println("Enter the date (DD-MM-YYYY): ");
         String date = In.nextLine();
 
-        Income income = new Income(amount, description, date);
+        Income income = new Income(amount, description, date, category);
         account.addTransaction(income);
     }
 
@@ -74,7 +74,7 @@ public class ProjectA {
         String date = In.nextLine();
         System.out.println("Select a category: ");
 
-        int i = 1;
+        int i = 1;1
         for(Category c : Category.values()) {
             System.out.println((i)+ ": " + c.name());
             i++;
@@ -135,8 +135,8 @@ class Account {
         System.out.println("Transaction added successfully");
     }
 
-    public void addTransaction(double amount, String description, String date) {
-        Income ic = new Income(amount, description, date);
+    public void addTransaction(double amount, String description, String date, Category category) {
+        Income ic = new Income(amount, description, date, category);
         transactions.add(ic);
         System.out.println("Transaction added successfully");
     }
@@ -217,7 +217,7 @@ abstract class Transaction {
 
 class Income extends Transaction {
 
-    public Income(double amount, String description, String date) {
+    public Income(double amount, String description, String date, Category category) {
         super(amount, description, date);
     }
 
