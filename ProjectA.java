@@ -278,9 +278,37 @@ class FinanceComparator implements Comparator<Transaction> {
 
 class ReportGenerator {
     public static void generateReport(Account account) {
-
+        System.out.println("\n=== FINANCIAL REPORT ===");
+        System.out.println("Account: " + account.getName());
+        
+        // Calculate totals
+        double totalIncome = 0;
+        double totalExpense = 0;
+        Map<Category, Double> categoryExpenses = new HashMap<>();
+        
+        for (Transaction t : account.getTransactions()) {
+            if (t instanceof Income) {
+                totalIncome += t.getAmount();
+            } else if (t instanceof Expense) {
+                totalExpense += t.getAmount();
+                Category cat = ((Expense)t).getCategory();
+                categoryExpenses.put(cat, categoryExpenses.getOrDefault(cat, 0.0) + t.getAmount());
+            }
+        }
+        
+        // Print summary
+        System.out.println();
+        System.out.println("Total Income: $" + totalIncome);
+        System.out.println("Total Expenses: $" + totalExpense);
+        System.out.println("Net Balance: $" + (totalIncome - totalExpense));
+        
+        // Print category breakdown
+        System.out.println("\nExpenses by Category:");
+        for (Category c : Category.values()) {
+            System.out.println("- " + c + ": $" + categoryExpenses.getOrDefault(c, 0.0));
+        }
     }
-
 }
+
 
 
