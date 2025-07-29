@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Comparator;
+import java.util.HashMap;
 
 
 public class ProjectA {
@@ -284,7 +285,7 @@ class ReportGenerator {
         // Calculate totals
         double totalIncome = 0;
         double totalExpense = 0;
-        Map<Category, Double> categoryExpenses = new HashMap<>();
+        HashMap<Category, Double> categoryExpenses = new HashMap<>();
         
         for (Transaction t : account.getTransactions()) {
             if (t instanceof Income) {
