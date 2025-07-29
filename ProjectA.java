@@ -101,7 +101,7 @@ public class ProjectA {
 
     public static void filterByCategory(Account account) {
         System.out.println("Filter By Category: ");
-        for (int i = 0; 1 < Category.values().length; i++) {
+        for (int i = 0; i < Category.values().length; i++) {
             System.out.println((i + 1)+ ": " + Category.values()[i]);
         }
         int choice = In.nextInt();
@@ -223,7 +223,7 @@ class Income extends Transaction {
 
     @Override
     public void displayDetails() {
-        System.out.printf("");
+        System.out.println("Income: $" + amount + " | " + description + " | " + date);
     }
 }
 
@@ -238,7 +238,7 @@ class Expense extends Transaction {
 
     @Override
     public void displayDetails() {
-        System.out.printf("");
+        System.out.println("Expense: $" + amount + " | " + description + " | " + date +  " | " + category);
     }
 
     public Category getCategory() {
