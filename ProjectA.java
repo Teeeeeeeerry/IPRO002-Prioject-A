@@ -147,8 +147,8 @@ class Account {
     }
 
     public void addTransaction(double amount, String description, String date, Category category) {
-        Income ic = new Income(amount, description, date, category);
-        transactions.add(ic);
+        Income income = new Income(amount, description, date, category);
+        transactions.add(income);
         System.out.println("Transaction added successfully");
     }
 
@@ -159,12 +159,9 @@ class Account {
         }
     }
 
-    public void removeTransaction(Income ic) {
-        transactions.remove(ic);
-        // if (index >= 0 && index < transactions.size()) {
-        //     transactions.remove(index);
-        //     System.out.println("Transaction removed");
-        // }
+    public void removeTransaction(Income income) {
+        transactions.remove(income);
+        System.out.println("Transaction removed");
     }
     
     public List<Transaction> getTransactions() {
