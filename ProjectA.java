@@ -287,15 +287,18 @@ class ReportGenerator {
         // Calculate totals
         double totalIncome = 0;
         double totalExpense = 0;
+        HashMap<Category, Double> categoryIncome = new HashMap<>();
         HashMap<Category, Double> categoryExpenses = new HashMap<>();
         
         for (Transaction t : account.getTransactions()) {
             if (t instanceof Income) {
                 totalIncome += t.getAmount();
+                Category catIn = ((Income)t).getCategory();
+                categoryExpenses.put(catEx, categoryExpenses.getOrDefault(catEx, 0.0) + t.getAmount());
             } else if (t instanceof Expense) {
                 totalExpense += t.getAmount();
-                Category cat = ((Expense)t).getCategory();
-                categoryExpenses.put(cat, categoryExpenses.getOrDefault(cat, 0.0) + t.getAmount());
+                Category catEx = ((Expense)t).getCategory();
+                categoryExpenses.put(catEx, categoryExpenses.getOrDefault(catEx, 0.0) + t.getAmount());
             }
         }
         
@@ -306,6 +309,11 @@ class ReportGenerator {
         System.out.println("Net Balance: $" + (totalIncome - totalExpense));
         
         // Print category breakdown
+        System.out.println("\nIncome by Category:");
+        for (Category c : Category.values()) {
+            System.out.println("- " + c + ": $" + categoryIncome.getOrDefault(c, 0.0));
+        }
+
         System.out.println("\nExpenses by Category:");
         for (Category c : Category.values()) {
             System.out.println("- " + c + ": $" + categoryExpenses.getOrDefault(c, 0.0));
