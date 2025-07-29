@@ -62,7 +62,7 @@ public class ProjectA {
         String date = In.nextLine();
         System.out.println("Select a category: ");
 
-        int i = 1;1
+        int i = 1;
         for(Category c : Category.values()) {
             System.out.println((i)+ ": " + c.name());
             i++;
@@ -84,7 +84,7 @@ public class ProjectA {
         String date = In.nextLine();
         System.out.println("Select a category: ");
 
-        int i = 1;1
+        int i = 1;
         for(Category c : Category.values()) {
             System.out.println((i)+ ": " + c.name());
             i++;
