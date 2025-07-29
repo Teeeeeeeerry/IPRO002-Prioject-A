@@ -294,7 +294,7 @@ class ReportGenerator {
             if (t instanceof Income) {
                 totalIncome += t.getAmount();
                 Category catIn = ((Income)t).getCategory();
-                categoryExpenses.put(catEx, categoryExpenses.getOrDefault(catEx, 0.0) + t.getAmount());
+                categoryExpenses.put(catIn, categoryExpenses.getOrDefault(catIn, 0.0) + t.getAmount());
             } else if (t instanceof Expense) {
                 totalExpense += t.getAmount();
                 Category catEx = ((Expense)t).getCategory();
