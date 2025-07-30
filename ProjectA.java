@@ -61,16 +61,9 @@ public class ProjectA {
         String description = In.nextLine();
         System.out.println("Enter the date (DD-MM-YYYY): ");
         String date = In.nextLine();
-        // System.out.println("Select a category: ");
+        System.out.println("Select a category: ");
+        Category filter = null;
 
-        // int i = 1;
-        // for(Category c : Category.values()) {
-        //     System.out.println((i)+ ": " + c.name());
-        //     i++;
-        // }
-
-        // int choice = In.nextInt();
-        // Category category = Category.values()[choice - 1];
 
         Category category;
         while (true) {
@@ -158,11 +151,11 @@ public class ProjectA {
 
     public static void filterByCategory(Account account) {
         System.out.println("Filter By Category: ");
-        // for (int i = 0; i < Category.values().length; i++) {
-        //     System.out.println((i + 1)+ ": " + Category.values()[i]);
-        // }
-        // int choice = In.nextInt();
-        // Category filter = Category.values()[choice - 1];
+        for (int i = 0; i < Category.values().length; i++) {
+            System.out.println((i + 1)+ ": " + Category.values()[i]);
+        }
+        int choice = In.nextInt();
+        Category filter = Category.values()[choice - 1];
 
         while (true) {
             try {
