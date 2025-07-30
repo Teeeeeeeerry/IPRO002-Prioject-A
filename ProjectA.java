@@ -70,31 +70,6 @@ public class ProjectA {
 
         int choice = In.nextInt();
         Category category = Category.values()[choice - 1];
-        // Category filter = null;
-
-
-        // Category category;
-        // while (true) {
-        //     System.out.println("Select a category: ");
-        //     int i = 1;
-        //     for(Category c : Category.values()) {
-        //         System.out.println((i)+ ": " + c.name());
-        //         i++;
-        //     }
-
-        //     try {
-        //         int choice = In.nextInt();
-        //         if (choice < 1 || choice > Category.values().length) {
-        //             System.out.println("Invalid choice. Please enter a number between 1 and " + Category.values().length);
-        //             continue;
-        //         }
-        //         category = Category.values()[choice - 1];
-        //         break;
-        //     } catch (Exception e) {
-        //         System.out.println("Invalid input. Please enter a number.");
-        //         In.nextLine();
-        //     }
-        // }
     
         Income income = new Income(amount, description, date, category);
         account.addTransaction(income);
@@ -117,29 +92,6 @@ public class ProjectA {
 
         int choice = In.nextInt();
         Category category = Category.values()[choice - 1];
-        // Category filter = null;
-        // Category category;
-        // while (true) {
-        //     System.out.println("Select a category: ");
-        //     int i = 1;
-        //     for(Category c : Category.values()) {
-        //         System.out.println((i)+ ": " + c.name());
-        //         i++;
-        //     }
-
-        //     try {
-        //         int choice = In.nextInt();
-        //         if (choice < 1 || choice > Category.values().length) {
-        //             System.out.println("Invalid choice. Please enter a number between 1 and " + Category.values().length);
-        //             continue;
-        //         }
-        //         category = Category.values()[choice - 1];
-        //         break;
-        //     } catch (Exception e) {
-        //         System.out.println("Invalid input. Please enter a number.");
-        //         In.nextLine(); // clear the invalid input
-        //     }
-        // }
 
         Expense expense = new Expense(amount, description, date, category);
         account.addTransaction(expense);
@@ -165,21 +117,6 @@ public class ProjectA {
         int choice = In.nextInt();
         Category filter = Category.values()[choice - 1];
 
-        // while (true) {
-        //     try {
-        //         int choice = In.nextInt();
-        //         if (choice < 1 || choice > Category.values().length) {
-        //             System.out.println("Invalid choice. Please enter a number between 1 and " + Category.values().length);
-        //             continue;
-        //         }
-        //         filter = Category.values()[choice - 1];
-        //         break;
-        //     } catch (Exception e) {
-        //         System.out.println("Invalid input. Please enter a number.");
-        //         In.nextLine(); // clear the invalid input
-        //     }
-        // }
-
         for (Transaction t : account.getTransactions()) {
             if (t instanceof Expense) {
                 Expense e = (Expense) t;
@@ -193,27 +130,6 @@ public class ProjectA {
     }
 
 }
-
-    // public static void filterByCategory(Account account) {
-    //     Category filter = selectCategory("Filter By Category: ");
-    //     for (Transaction t : account.getTransactions()) {
-    //         if (t instanceof Expense) {
-    //             Expense e = (Expense) t;
-    //             if (e.getCategory() == filter) {
-    //                 e.displayDetails();
-    //             }
-    //         }
-    //     }
-    // }
-
-    // private static Category selectCategory(String prompt) {
-    //     System.out.println(prompt);
-    //     for (int i = 0; i < Category.values().length; i++) {
-    //         System.out.println((i + 1)+ ": " + Category.values()[i]);
-    //     }
-    //     int choice = In.nextInt();
-    //     return Category.values()[choice - 1];
-    // }
 
 class Account {
     
@@ -308,13 +224,6 @@ abstract class Transaction /*implements Printed*/ {
     public String toString() {
         return "Amount: " + amount + " Date: " + date + " Description: " + description;
     }
-
-    // public void displayDetails() {
-    //     String type = this instanceof Income ? "Income" : "Expense";
-    //     System.out.println(type + ": $" + amount + " | " + description + " | " + date + " | " + 
-    //         (this instanceof Income ? ((Income)this).getCategory() : ((Expense)this).getCategory()));
-    // }
-    //If we conbine the "displayDetails()" function in class Income and class Expense, we should del "displayDetails()" in both class
     
 }
 
