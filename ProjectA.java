@@ -62,31 +62,38 @@ public class ProjectA {
         System.out.println("Enter the date (DD-MM-YYYY): ");
         String date = In.nextLine();
         System.out.println("Select a category: ");
+        int  i = 1;
+        for (Category c : Category.values()) {
+            System.out.println((i) + ": " + c.name());
+        }
+
+        int choice = In.nextInt();
+        Category category = Category.values()[choice - 1];
         // Category filter = null;
 
 
-        Category category;
-        while (true) {
-            System.out.println("Select a category: ");
-            int i = 1;
-            for(Category c : Category.values()) {
-                System.out.println((i)+ ": " + c.name());
-                i++;
-            }
+        // Category category;
+        // while (true) {
+        //     System.out.println("Select a category: ");
+        //     int i = 1;
+        //     for(Category c : Category.values()) {
+        //         System.out.println((i)+ ": " + c.name());
+        //         i++;
+        //     }
 
-            try {
-                int choice = In.nextInt();
-                if (choice < 1 || choice > Category.values().length) {
-                    System.out.println("Invalid choice. Please enter a number between 1 and " + Category.values().length);
-                    continue;
-                }
-                category = Category.values()[choice - 1];
-                break;
-            } catch (Exception e) {
-                System.out.println("Invalid input. Please enter a number.");
-                In.nextLine();
-            }
-        }
+        //     try {
+        //         int choice = In.nextInt();
+        //         if (choice < 1 || choice > Category.values().length) {
+        //             System.out.println("Invalid choice. Please enter a number between 1 and " + Category.values().length);
+        //             continue;
+        //         }
+        //         category = Category.values()[choice - 1];
+        //         break;
+        //     } catch (Exception e) {
+        //         System.out.println("Invalid input. Please enter a number.");
+        //         In.nextLine();
+        //     }
+        // }
     
         Income income = new Income(amount, description, date, category);
         account.addTransaction(income);
