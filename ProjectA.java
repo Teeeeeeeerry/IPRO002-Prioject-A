@@ -128,6 +128,11 @@ public class ProjectA {
                 if (e.getCategory() == filter) {
                     e.displayDetails();
                 }
+            } else if (t instanceof Income) {
+                Income i = (Income) t;
+                if (i.getCategory() == filter) {
+                    i.displayDetails();
+                }
             }
 
         }
