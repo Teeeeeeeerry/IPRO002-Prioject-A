@@ -72,7 +72,6 @@ public class ProjectA {
         // int choice = In.nextInt();
         // Category category = Category.values()[choice - 1];
 
-        Category selection with validation
         Category category;
         while (true) {
             System.out.println("Select a category: ");
