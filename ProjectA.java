@@ -26,7 +26,7 @@ public class ProjectA {
             System.out.println("8. Exit");
             System.out.print("Select option: ");
             
-            int option = In.nextInt();
+            int option;
 
             while (true) {
                 System.out.print("Select option: ");
@@ -290,7 +290,7 @@ public class ProjectA {
                             }
                         } catch (Exception e) {
                             System.out.println("Invalid input. Please enter a valid number.");
-                            In.nextLine(); // Clear the input buffer
+                            In.nextLine(); 
                         }
                     }
                 } else if (option == 3) {
@@ -300,7 +300,7 @@ public class ProjectA {
                 }
             } catch (Exception e) {
                 System.out.println("Invalid input. Please enter a number.");
-                In.nextLine(); // Clear the input buffer
+                In.nextLine();
             }
         }
     }
