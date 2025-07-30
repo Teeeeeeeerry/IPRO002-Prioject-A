@@ -62,10 +62,13 @@ public class ProjectA {
         System.out.println("Enter the date (DD-MM-YYYY): ");
         String date = In.nextLine();
         System.out.println("Select a category: ");
+
         int  i = 1;
         for (Category c : Category.values()) {
-            System.out.println((i) + ": " + c.name());
-            i++;
+            if (c.isIncome()) {
+                System.out.println((i) + ": " + c.name());
+                i++;
+            }
         }
 
         int choice = In.nextInt();
@@ -86,8 +89,10 @@ public class ProjectA {
 
         int i = 1;
         for(Category c : Category.values()) {
-            System.out.println((i)+ ": " + c.name());
-            i++;
+            if (c.isExpense()){
+                System.out.println((i)+ ": " + c.name());
+                i++;
+            }
         }
 
         int choice = In.nextInt();
@@ -266,8 +271,35 @@ class Expense extends Transaction {
 }
 
 enum Category {
-    FOOD, TRANSPORT, ENTERTAINMENT, OTHER
+    // income C
+    SALARY(true), 
+    BONUS(true), 
+    INVESTMENT(true),
+    
+    // expense C
+    FOOD(false), 
+    TRANSPORT(false), 
+    ENTERTAINMENT(false),
+    
+    // other C of I&E
+    OTHER_INCOME(true),
+    OTHER_EXPENSE(false);
+
+    private final boolean isIncome;
+
+    Category(boolean isIncome) {
+        this.isIncome = isIncome;
+    }
+
+    public boolean isIncome() {
+        return isIncome;
+    }
+
+    public boolean isExpense() {
+        return !isIncome;
+    }
 }
+
 
 //filters by date in ascending order 
 class FinanceComparator implements Comparator<Transaction> {
@@ -292,12 +324,12 @@ class ReportGenerator {
         for (Transaction t : account.getTransactions()) {
             if (t instanceof Income) {
                 totalIncome += t.getAmount();
-                Category catIn = ((Income)t).getCategory();
-                categoryExpenses.put(catIn, categoryExpenses.getOrDefault(catIn, 0.0) + t.getAmount());
+                Category cat = ((Income)t).getCategory();
+                categoryIncome.put(cat, categoryIncome.getOrDefault(cat, 0.0) + t.getAmount());
             } else if (t instanceof Expense) {
                 totalExpense += t.getAmount();
-                Category catEx = ((Expense)t).getCategory();
-                categoryExpenses.put(catEx, categoryExpenses.getOrDefault(catEx, 0.0) + t.getAmount());
+                Category cat = ((Expense)t).getCategory();
+                categoryExpenses.put(cat, categoryExpenses.getOrDefault(cat, 0.0) + t.getAmount());
             }
         }
         
@@ -310,12 +342,16 @@ class ReportGenerator {
         // Print category breakdown
         System.out.println("\nIncome by Category:");
         for (Category c : Category.values()) {
-            System.out.println("- " + c + ": $" + categoryIncome.getOrDefault(c, 0.0));
+            if (c.isIncome()) {
+                System.out.println("- " + c + ": $" + categoryIncome.getOrDefault(c, 0.0));
+            }
         }
 
         System.out.println("\nExpenses by Category:");
         for (Category c : Category.values()) {
-            System.out.println("- " + c + ": $" + categoryExpenses.getOrDefault(c, 0.0));
+            if (c.isExpense()) {
+                System.out.println("- " + c + ": $" + categoryExpenses.getOrDefault(c, 0.0));
+            }
         }
     }
 }
