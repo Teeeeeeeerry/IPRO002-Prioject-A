@@ -16,8 +16,8 @@ public class ProjectA {
             System.out.println("1. Add Income");
             System.out.println("2. Add Expense");
             System.out.println("3. View Transactions");
-            System.out.println("4. Sort Transactions Filter");
-            System.out.println("5. Category Filter");
+            System.out.println("4. Sort Transactions by Date");
+            System.out.println("5. Filter Expenses by Category");
             System.out.println("6. Generate Report");
             System.out.println("7. Exit");
             System.out.print("Select option: ");
@@ -61,40 +61,40 @@ public class ProjectA {
         String description = In.nextLine();
         System.out.println("Enter the date (DD-MM-YYYY): ");
         String date = In.nextLine();
-        System.out.println("Select a category: ");
+        // System.out.println("Select a category: ");
 
-        int i = 1;
-        for(Category c : Category.values()) {
-            System.out.println((i)+ ": " + c.name());
-            i++;
-        }
-
-        int choice = In.nextInt();
-        Category category = Category.values()[choice - 1];
-
-        // Category selection with validation
-        // Category category;
-        // while (true) {
-        //     System.out.println("Select a category: ");
-        //     int i = 1;
-        //     for(Category c : Category.values()) {
-        //         System.out.println((i)+ ": " + c.name());
-        //         i++;
-        //     }
-
-        //     try {
-        //         int choice = In.nextInt();
-        //         if (choice < 1 || choice > Category.values().length) {
-        //             System.out.println("Invalid choice. Please enter a number between 1 and " + Category.values().length);
-        //             continue;
-        //         }
-        //         category = Category.values()[choice - 1];
-        //         break;
-        //     } catch (Exception e) {
-        //         System.out.println("Invalid input. Please enter a number.");
-        //         In.nextLine(); // clear the invalid input
-        //     }
+        // int i = 1;
+        // for(Category c : Category.values()) {
+        //     System.out.println((i)+ ": " + c.name());
+        //     i++;
         // }
+
+        // int choice = In.nextInt();
+        // Category category = Category.values()[choice - 1];
+
+        Category selection with validation
+        Category category;
+        while (true) {
+            System.out.println("Select a category: ");
+            int i = 1;
+            for(Category c : Category.values()) {
+                System.out.println((i)+ ": " + c.name());
+                i++;
+            }
+
+            try {
+                int choice = In.nextInt();
+                if (choice < 1 || choice > Category.values().length) {
+                    System.out.println("Invalid choice. Please enter a number between 1 and " + Category.values().length);
+                    continue;
+                }
+                category = Category.values()[choice - 1];
+                break;
+            } catch (Exception e) {
+                System.out.println("Invalid input. Please enter a number.");
+                In.nextLine();
+            }
+        }
     
         Income income = new Income(amount, description, date, category);
         account.addTransaction(income);
@@ -107,80 +107,44 @@ public class ProjectA {
         String description = In.nextLine();
         System.out.println("Enter the date (DD-MM-YYYY): ");
         String date = In.nextLine();
-        System.out.println("Select a category: ");
+        // System.out.println("Select a category: ");
 
-        int i = 1;
-        for(Category c : Category.values()) {
-            System.out.println((i)+ ": " + c.name());
-            i++;
-        }
-
-        int choice = In.nextInt();
-        Category category = Category.values()[choice - 1];
-
-        // Category category;
-        // while (true) {
-        //     System.out.println("Select a category: ");
-        //     int i = 1;
-        //     for(Category c : Category.values()) {
-        //         System.out.println((i)+ ": " + c.name());
-        //         i++;
-        //     }
-
-        //     try {
-        //         int choice = In.nextInt();
-        //         if (choice < 1 || choice > Category.values().length) {
-        //             System.out.println("Invalid choice. Please enter a number between 1 and " + Category.values().length);
-        //             continue;
-        //         }
-        //         category = Category.values()[choice - 1];
-        //         break;
-        //     } catch (Exception e) {
-        //         System.out.println("Invalid input. Please enter a number.");
-        //         In.nextLine(); // clear the invalid input
-        //     }
+        // int i = 1;
+        // for(Category c : Category.values()) {
+        //     System.out.println((i)+ ": " + c.name());
+        //     i++;
         // }
+
+        // int choice = In.nextInt();
+        // Category category = Category.values()[choice - 1];
+
+        Category category;
+        while (true) {
+            System.out.println("Select a category: ");
+            int i = 1;
+            for(Category c : Category.values()) {
+                System.out.println((i)+ ": " + c.name());
+                i++;
+            }
+
+            try {
+                int choice = In.nextInt();
+                if (choice < 1 || choice > Category.values().length) {
+                    System.out.println("Invalid choice. Please enter a number between 1 and " + Category.values().length);
+                    continue;
+                }
+                category = Category.values()[choice - 1];
+                break;
+            } catch (Exception e) {
+                System.out.println("Invalid input. Please enter a number.");
+                In.nextLine(); // clear the invalid input
+            }
+        }
 
         Expense expense = new Expense(amount, description, date, category);
         account.addTransaction(expense);
 
     } 
-    
-    //rewrite addIncome and addExpense function
-
-    // public static void addIncome(Account account) {
-    //     Transaction transaction = createTransaction(true);
-    //     account.addTransaction(transaction);
-    // }
-
-    // public static void addExpense(Account account) {
-    //     Transaction transaction = createTransaction(false);
-    //     account.addTransaction(transaction);
-    // }
-
-    // private static Transaction createTransaction(boolean isIncome) {
-    //     System.out.println(isIncome ? "Add the income: " : "Add the Expense: ");
-    //     double amount = In.nextDouble();
-    //     System.out.println("Enter contents of description: ");
-    //     String description = In.nextLine();
-    //     System.out.println("Enter the date (DD-MM-YYYY): ");
-    //     String date = In.nextLine();
-    //     Category category = selectCategory("Select a category: ");
-
-    //     int i = 1;
-    //     for(Category c : Category.values()) {
-    //         System.out.println((i)+ ": " + c.name());
-    //         i++;
-    //     }
-
-    //     int choice = In.nextInt();
-    //     Category category = Category.values()[choice - 1];
-        
-    //     return isIncome 
-    //         ? new Income(amount, description, date, category)
-    //         : new Expense(amount, description, date, category);
-    // }
-
 
     public static void displayTransactions(Account account) {
         List<Transaction> transactions = account.getTransactions();
@@ -195,27 +159,26 @@ public class ProjectA {
 
     public static void filterByCategory(Account account) {
         System.out.println("Filter By Category: ");
-        for (int i = 0; i < Category.values().length; i++) {
-            System.out.println((i + 1)+ ": " + Category.values()[i]);
-        }
-        int choice = In.nextInt();
-        Category filter = Category.values()[choice - 1];
-
-        // Category filter;
-        // while (true) {
-        //     try {
-        //         int choice = In.nextInt();
-        //         if (choice < 1 || choice > Category.values().length) {
-        //             System.out.println("Invalid choice. Please enter a number between 1 and " + Category.values().length);
-        //             continue;
-        //         }
-        //         filter = Category.values()[choice - 1];
-        //         break;
-        //     } catch (Exception e) {
-        //         System.out.println("Invalid input. Please enter a number.");
-        //         In.nextLine(); // clear the invalid input
-        //     }
+        // for (int i = 0; i < Category.values().length; i++) {
+        //     System.out.println((i + 1)+ ": " + Category.values()[i]);
         // }
+        // int choice = In.nextInt();
+        // Category filter = Category.values()[choice - 1];
+
+        while (true) {
+            try {
+                int choice = In.nextInt();
+                if (choice < 1 || choice > Category.values().length) {
+                    System.out.println("Invalid choice. Please enter a number between 1 and " + Category.values().length);
+                    continue;
+                }
+                filter = Category.values()[choice - 1];
+                break;
+            } catch (Exception e) {
+                System.out.println("Invalid input. Please enter a number.");
+                In.nextLine(); // clear the invalid input
+            }
+        }
 
         for (Transaction t : account.getTransactions()) {
             if (t instanceof Expense) {
