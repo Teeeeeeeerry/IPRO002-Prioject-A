@@ -27,6 +27,15 @@ public class ProjectA {
             System.out.print("Select option: ");
             
             int option = In.nextInt();
+
+            while (true) {
+                System.out.print("Select option: ");
+                option = In.nextInt();
+                if (option >= 1 && option <= 8) {
+                    break;
+                }
+                System.out.println("Invalid option, please enter 1-8");
+            }
             
             if (option == 1) {
                 addIncome(account);
@@ -78,7 +87,15 @@ public class ProjectA {
             }
         }
 
-        int choice = In.nextInt();
+        int choice;
+        while (true) {
+            System.out.print("Enter category number: ");
+            choice = In.nextInt();
+            if (choice >= 1 && choice <= Category.values().length) {
+                break;
+            }
+            System.out.println("Invalid category, please enter 1-" + (i-1));
+        }
         Category category = Category.values()[choice - 1];
     
         Income income = new Income(amount, description, date, category);
@@ -102,7 +119,15 @@ public class ProjectA {
             }
         }
 
-        int choice = In.nextInt();
+        int choice;
+        while (true) {
+            System.out.print("Enter category number: ");
+            choice = In.nextInt();
+            if (choice >= 1 && choice <= Category.values().length) {
+                break;
+            }
+            System.out.println("Invalid category, please enter 1-" + (i-1));
+        }
         Category category = Category.values()[choice - 1];
 
         Expense expense = new Expense(amount, description, date, category);
