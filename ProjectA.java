@@ -123,15 +123,15 @@ public class ProjectA {
         Category filter = Category.values()[choice - 1];
 
         for (Transaction t : account.getTransactions()) {
-            if (t instanceof Expense) {
+            if (t instanceof Income) {
+                Income c = (Income) t;
+                if (c.getCategory() == filter) {
+                    c.displayDetails();
+                }
+            } else if (t instanceof Expense) {
                 Expense e = (Expense) t;
                 if (e.getCategory() == filter) {
                     e.displayDetails();
-                }
-            } else if (t instanceof Income) {
-                Income i = (Income) t;
-                if (i.getCategory() == filter) {
-                    i.displayDetails();
                 }
             }
 
