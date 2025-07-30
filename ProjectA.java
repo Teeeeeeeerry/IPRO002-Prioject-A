@@ -19,7 +19,7 @@ public class ProjectA {
             System.out.println("1. Add Income");
             System.out.println("2. Add Expense");
             System.out.println("3. View Transactions");
-            System.out.println("4. Sort Transactions Filter");
+            System.out.println("4. Sort Transactions by time");
             System.out.println("5. Category Filter");
             System.out.println("6. Generate Report");
             System.out.println("7. Exit");
