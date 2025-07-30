@@ -304,10 +304,18 @@ enum Category {
 //filters by date in ascending order 
 class FinanceComparator implements Comparator<Transaction> {
     @Override
-    public int compare(Transaction t, Transaction t2) {
-        return t.getDate().compareTo(t2.getDate());
+    public int compare(Transaction t1, Transaction t2) {
+        String[] parts1 = t1.getDate().split("-");
+        String[] parts2 = t2.getDate().split("-");
+        
+        int yearCompare = parts1[2].compareTo(parts2[2]);
+        if (yearCompare != 0) return yearCompare;
+        
+        int monthCompare = parts1[1].compareTo(parts2[1]);
+        if (monthCompare != 0) return monthCompare;
+        
+        return parts1[0].compareTo(parts2[0]);
     }
-
 }
 
 class ReportGenerator {
