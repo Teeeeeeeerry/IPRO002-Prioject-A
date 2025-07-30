@@ -194,26 +194,26 @@ public class ProjectA {
 
 }
 
-    // public static void filterByCategory(Account account) {
-    //     Category filter = selectCategory("Filter By Category: ");
-    //     for (Transaction t : account.getTransactions()) {
-    //         if (t instanceof Expense) {
-    //             Expense e = (Expense) t;
-    //             if (e.getCategory() == filter) {
-    //                 e.displayDetails();
-    //             }
-    //         }
-    //     }
-    // }
+    public static void filterByCategory(Account account) {
+        Category filter = selectCategory("Filter By Category: ");
+        for (Transaction t : account.getTransactions()) {
+            if (t instanceof Expense) {
+                Expense e = (Expense) t;
+                if (e.getCategory() == filter) {
+                    e.displayDetails();
+                }
+            }
+        }
+    }
 
-    // private static Category selectCategory(String prompt) {
-    //     System.out.println(prompt);
-    //     for (int i = 0; i < Category.values().length; i++) {
-    //         System.out.println((i + 1)+ ": " + Category.values()[i]);
-    //     }
-    //     int choice = In.nextInt();
-    //     return Category.values()[choice - 1];
-    // }
+    private static Category selectCategory(String prompt) {
+        System.out.println(prompt);
+        for (int i = 0; i < Category.values().length; i++) {
+            System.out.println((i + 1)+ ": " + Category.values()[i]);
+        }
+        int choice = In.nextInt();
+        return Category.values()[choice - 1];
+    }
 
 class Account {
     
