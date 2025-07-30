@@ -23,7 +23,8 @@ public class ProjectA {
             System.out.println("5. Category Filter");
             System.out.println("6. Generate Report");
             System.out.println("7. Delete Transaction");
-            System.out.println("8. Exit");
+            System.out.println("8. Print Transaction Summary");
+            System.out.println("9. Exit");
             System.out.print("Select option: ");
             
             int option;
@@ -59,7 +60,10 @@ public class ProjectA {
             else if (option == 7) {
                 deleteTransaction(account);
             }
-            else if (option == 8) {
+            else if (option ==8) {
+                printTransactionSummary(account);
+            }
+            else if (option == 9) {
                 running = false;
             }
             else {
@@ -327,6 +331,14 @@ public class ProjectA {
         }
     }
 
+    //interface part
+    public static void printTransactionSummary(Account account) {
+        for (Transaction t : account.getTransactions()) {
+            t.printSummary();
+            System.out.println("------");
+        }
+    }
+
 }
 
 class Account {
@@ -384,11 +396,15 @@ class Account {
     public String getName() {
         return name;
     }
-
    
 }
 
-abstract class Transaction /*implements Printed*/ {
+// interface add
+interface Printable {
+    void printSummary();
+}
+
+abstract class Transaction implements Printable {
 
     protected final double amount;
     protected final String description;
@@ -426,6 +442,15 @@ abstract class Transaction /*implements Printed*/ {
 
     public String toString() {
         return "Amount: " + amount + " Date: " + date + " Description: " + description;
+    }
+
+    //interface part
+    @Override
+    public void printSummary() {
+        System.out.println("Transaction Summary:");
+        System.out.println("- Amount: " + amount);
+        System.out.println("- Date: " + date);
+        System.out.println("- Description: " + description);
     }
     
 }
@@ -561,10 +586,6 @@ class ReportGenerator {
         }
     }
 }
-
-// imterface Printed {
-//     void displayDetails();
-// }
 
 //test
 class SampleTransactions {
