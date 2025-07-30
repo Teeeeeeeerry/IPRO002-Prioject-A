@@ -22,7 +22,8 @@ public class ProjectA {
             System.out.println("4. Sort Transactions by time");
             System.out.println("5. Category Filter");
             System.out.println("6. Generate Report");
-            System.out.println("7. Exit");
+            System.out.println("7. Delete Transaction");
+            System.out.println("8. Exit");
             System.out.print("Select option: ");
             
             int option = In.nextInt();
@@ -47,8 +48,11 @@ public class ProjectA {
                 ReportGenerator.generateReport(account);
             } 
             else if (option == 7) {
+                deleteTransaction(account);
+            }
+            else if (option == 8) {
                 running = false;
-            } 
+            }
             else {
                 System.out.println("Invalid option");
             }
@@ -142,6 +146,78 @@ public class ProjectA {
 
     }
 
+    public static void deleteTransaction(Account account) {
+        System.out.println("\n===== Delete Transaction =====");
+        System.out.println("1. Delete Income");
+        System.out.println("2. Delete Expense");
+        
+        int option = In.nextInt();
+
+        if (option == 1) {
+            System.out.println("Current Income Records:");
+            displayIncomes(account);
+            System.out.print("Enter income record number to delete: ");
+            int incomeIndex = In.nextInt();
+            
+            List<Income> incomes = new ArrayList<>();
+            for (Transaction t : account.getTransactions()) {
+                if (t instanceof Income) {
+                    incomes.add((Income)t);
+                }
+            }
+            
+            if (incomeIndex > 0 && incomeIndex <= incomes.size()) {
+                account.removeTransaction(incomes.get(incomeIndex - 1));
+            } else {
+                System.out.println("Error: Invalid number");
+            }
+        } 
+        else if (option == 2) {
+            System.out.println("Current Expense Records:");
+            displayExpenses(account);
+            System.out.print("Enter expense record number to delete: ");
+            int expenseIndex = In.nextInt();
+            
+            List<Expense> expenses = new ArrayList<>();
+            for (Transaction t : account.getTransactions()) {
+                if (t instanceof Expense) {
+                    expenses.add((Expense)t);
+                }
+            }
+            
+            if (expenseIndex > 0 && expenseIndex <= expenses.size()) {
+                account.removeTransaction(expenses.get(expenseIndex - 1));
+            } else {
+                System.out.println("Error: Invalid number");
+            }
+        } 
+        else {
+            System.out.println("Error: Invalid option");
+        }
+    }
+    
+    // Helper method to display income records
+    private static void displayIncomes(Account account) {
+        int i = 1;
+        for (Transaction t : account.getTransactions()) {
+            if (t instanceof Income) {
+                System.out.print(i++ + ". ");
+                t.displayDetails();
+            }
+        }
+    }
+    
+    // Helper method to display expense records
+    private static void displayExpenses(Account account) {
+        int i = 1;
+        for (Transaction t : account.getTransactions()) {
+            if (t instanceof Expense) {
+                System.out.print(i++ + ". ");
+                t.displayDetails();
+            }
+        }
+    }
+
 }
 
 class Account {
@@ -169,16 +245,21 @@ class Account {
     //     System.out.println("Transaction added successfully");
     // }
 
-    public void removeTransaction(int index) {
-        if (index >= 0 && index < transactions.size()) {
-            transactions.remove(index);
-            System.out.println("Transaction removed");
-        }
-    }
+    // public void removeTransaction(int index) {
+    //     if (index >= 0 && index < transactions.size()) {
+    //         transactions.remove(index);
+    //         System.out.println("Transaction removed");
+    //     }
+    // }
 
     public void removeTransaction(Income income) {
         transactions.remove(income);
         System.out.println("Transaction removed");
+    }
+
+    public void removeTransaction(Expense expense) {
+        transactions.remove(expense);
+        System.out.println("Expense removed");
     }
     
     public List<Transaction> getTransactions() {
