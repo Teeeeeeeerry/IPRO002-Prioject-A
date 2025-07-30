@@ -9,9 +9,12 @@ public class ProjectA {
 
     public static void main(String[] args) {
 
-            Account account = new Account("My Personal Account");
-            boolean running = true;
-            while (running) {
+        Account account = new Account("My Personal Account");
+
+        SampleTransactions.createSampleData(account);
+
+        boolean running = true;
+        while (running) {
             System.out.println("\n===== Finance Manager =====");
             System.out.println("1. Add Income");
             System.out.println("2. Add Expense");
@@ -373,4 +376,18 @@ class ReportGenerator {
 //     void displayDetails();
 // }
 
+//test
+class SampleTransactions {
+    
+    public static void createSampleData(Account account) {
+        // Income transactions
+        account.addTransaction(new Income(5000.00, "Monthly Salary", "15-03-2023", Category.SALARY));
+        account.addTransaction(new Income(1000.00, "Yearly Bonus", "20-12-2023", Category.BONUS));
+        account.addTransaction(new Income(250.50, "Stock Dividends", "05-07-2023", Category.INVESTMENT));
 
+        // Expense transactions
+        account.addTransaction(new Expense(150.75, "Grocery Shopping", "10-01-2023", Category.FOOD));
+        account.addTransaction(new Expense(45.00, "Bus Pass", "03-11-2023", Category.TRANSPORT));
+        account.addTransaction(new Expense(120.00, "Movie Tickets", "25-05-2023", Category.ENTERTAINMENT));
+    }
+}
