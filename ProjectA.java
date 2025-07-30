@@ -171,56 +171,140 @@ public class ProjectA {
 
     }
 
-    public static void deleteTransaction(Account account) {
-        System.out.println("\n===== Delete Transaction =====");
-        System.out.println("1. Delete Income");
-        System.out.println("2. Delete Expense");
+    //old one
+    // public static void deleteTransaction(Account account) {
+    //     System.out.println("\n===== Delete Transaction =====");
+    //     System.out.println("1. Delete Income");
+    //     System.out.println("2. Delete Expense");
         
-        int option = In.nextInt();
+    //     int option = In.nextInt();
 
-        if (option == 1) {
-            System.out.println("Current Income Records:");
-            displayIncomes(account);
-            System.out.print("Enter income record number to delete: ");
-            int incomeIndex = In.nextInt();
+    //     if (option == 1) {
+    //         System.out.println("Current Income Records:");
+    //         displayIncomes(account);
+    //         System.out.print("Enter income record number to delete: ");
+    //         int incomeIndex = In.nextInt();
             
-            List<Income> incomes = new ArrayList<>();
-            for (Transaction t : account.getTransactions()) {
-                if (t instanceof Income) {
-                    incomes.add((Income)t);
+    //         List<Income> incomes = new ArrayList<>();
+    //         for (Transaction t : account.getTransactions()) {
+    //             if (t instanceof Income) {
+    //                 incomes.add((Income)t);
+    //             }
+    //         }
+            
+    //         if (incomeIndex > 0 && incomeIndex <= incomes.size()) {
+    //             account.removeTransaction(incomes.get(incomeIndex - 1));
+    //         } else {
+    //             System.out.println("Error: Invalid number");
+    //         }
+    //     } 
+    //     else if (option == 2) {
+    //         System.out.println("Current Expense Records:");
+    //         displayExpenses(account);
+    //         System.out.print("Enter expense record number to delete: ");
+    //         int expenseIndex = In.nextInt();
+            
+    //         List<Expense> expenses = new ArrayList<>();
+    //         for (Transaction t : account.getTransactions()) {
+    //             if (t instanceof Expense) {
+    //                 expenses.add((Expense)t);
+    //             }
+    //         }
+            
+    //         if (expenseIndex > 0 && expenseIndex <= expenses.size()) {
+    //             account.removeTransaction(expenses.get(expenseIndex - 1));
+    //         } else {
+    //             System.out.println("Error: Invalid number");
+    //         }
+    //     } 
+    //     else {
+    //         System.out.println("Error: Invalid option");
+    //     }
+    // }
+
+    //new one
+    public static void deleteTransaction(Account account) {
+        boolean validOption = false;
+        while (!validOption) {
+            try {
+                System.out.println("\n===== Delete Transaction =====");
+                System.out.println("1. Delete Income");
+                System.out.println("2. Delete Expense");
+                System.out.println("3. Back to Main Menu");
+                System.out.print("Select option (1-3): ");
+                
+                int option = In.nextInt();
+                
+                if (option == 1 || option == 2) {
+                    boolean validRecord = false;
+                    while (!validRecord) {
+                        try {
+                            if (option == 1) {
+                                System.out.println("Current Income Records:");
+                                displayIncomes(account);
+                                System.out.print("Enter income record number to delete (0 to cancel): ");
+                                int incomeIndex = In.nextInt();
+                                
+                                if (incomeIndex == 0) {
+                                    break;
+                                }
+                                
+                                List<Income> incomes = new ArrayList<>();
+                                for (Transaction t : account.getTransactions()) {
+                                    if (t instanceof Income) {
+                                        incomes.add((Income)t);
+                                    }
+                                }
+                                
+                                if (incomeIndex > 0 && incomeIndex <= incomes.size()) {
+                                    account.removeTransaction(incomes.get(incomeIndex - 1));
+                                    validRecord = true;
+                                    validOption = true;
+                                } else {
+                                    System.out.println("Error: Invalid number, please enter 1-" + incomes.size() + " or 0 to cancel");
+                                }
+                            } else if (option == 2) {
+                                System.out.println("Current Expense Records:");
+                                displayExpenses(account);
+                                System.out.print("Enter expense record number to delete (0 to cancel): ");
+                                int expenseIndex = In.nextInt();
+                                
+                                if (expenseIndex == 0) {
+                                    break;
+                                }
+                                
+                                List<Expense> expenses = new ArrayList<>();
+                                for (Transaction t : account.getTransactions()) {
+                                    if (t instanceof Expense) {
+                                        expenses.add((Expense)t);
+                                    }
+                                }
+                                
+                                if (expenseIndex > 0 && expenseIndex <= expenses.size()) {
+                                    account.removeTransaction(expenses.get(expenseIndex - 1));
+                                    validRecord = true;
+                                    validOption = true;
+                                } else {
+                                    System.out.println("Error: Invalid number, please enter 1-" + expenses.size() + " or 0 to cancel");
+                                }
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Invalid input. Please enter a valid number.");
+                            In.nextLine(); // Clear the input buffer
+                        }
+                    }
+                } else if (option == 3) {
+                    validOption = true;
+                } else {
+                    System.out.println("Invalid option. Please enter 1, 2, or 3.");
                 }
+            } catch (Exception e) {
+                System.out.println("Invalid input. Please enter a number.");
+                In.nextLine(); // Clear the input buffer
             }
-            
-            if (incomeIndex > 0 && incomeIndex <= incomes.size()) {
-                account.removeTransaction(incomes.get(incomeIndex - 1));
-            } else {
-                System.out.println("Error: Invalid number");
-            }
-        } 
-        else if (option == 2) {
-            System.out.println("Current Expense Records:");
-            displayExpenses(account);
-            System.out.print("Enter expense record number to delete: ");
-            int expenseIndex = In.nextInt();
-            
-            List<Expense> expenses = new ArrayList<>();
-            for (Transaction t : account.getTransactions()) {
-                if (t instanceof Expense) {
-                    expenses.add((Expense)t);
-                }
-            }
-            
-            if (expenseIndex > 0 && expenseIndex <= expenses.size()) {
-                account.removeTransaction(expenses.get(expenseIndex - 1));
-            } else {
-                System.out.println("Error: Invalid number");
-            }
-        } 
-        else {
-            System.out.println("Error: Invalid option");
         }
     }
-    
+
     // Helper method to display income records
     private static void displayIncomes(Account account) {
         int i = 1;
