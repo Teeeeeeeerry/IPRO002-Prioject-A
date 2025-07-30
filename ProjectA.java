@@ -65,6 +65,7 @@ public class ProjectA {
         int  i = 1;
         for (Category c : Category.values()) {
             System.out.println((i) + ": " + c.name());
+            i++;
         }
 
         int choice = In.nextInt();
