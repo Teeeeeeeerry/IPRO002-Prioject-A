@@ -326,21 +326,13 @@ class Account {
 
     //get transction by category
     public void sortTransactions() {
-        transactions.sort(new FinanceComparator());
+        transactions.sort(Transaction.DATE_COMPARATOR);
     }
 
     public String getName() {
         return name;
     }
 
-    // static final Comparator<Transaction> DATE_COMPARATOR = 
-    //     Comparator.comparing((Transaction t) -> t.getDate().split("-")[2]) 
-    //              .thenComparing(t -> t.getDate().split("-")[1])            
-    //              .thenComparing(t -> t.getDate().split("-")[0]);           
-
-    // public void sortTransactions() {
-    //     Collections.sort(transactions, DATE_COMPARATOR);
-   
 }
 
 // interface add
@@ -353,6 +345,11 @@ abstract class Transaction implements Printable {
     protected final double amount;
     protected final String description;
     protected final String date;
+
+     static final Comparator<Transaction> DATE_COMPARATOR = 
+        Comparator.comparing((Transaction t) -> t.getDate().split("-")[2])
+                 .thenComparing(t -> t.getDate().split("-")[1])           
+                 .thenComparing(t -> t.getDate().split("-")[0]); 
 
     // made sure to add some throw and catch exception errors if the user has any invalid values
     public Transaction(double amount, String description, String date) {
@@ -397,6 +394,8 @@ abstract class Transaction implements Printable {
         System.out.println("- Description: " + description);
     }
     
+
+
 }
 
 class Income extends Transaction {
@@ -464,24 +463,6 @@ enum Category {
 
     public boolean isExpense() {
         return !isIncome;
-    }
-}
-
-
-//filters by date in ascending order 
-class FinanceComparator implements Comparator<Transaction> {
-    @Override
-    public int compare(Transaction t1, Transaction t2) {
-        String[] parts1 = t1.getDate().split("-");
-        String[] parts2 = t2.getDate().split("-");
-        
-        int yearCompare = parts1[2].compareTo(parts2[2]);
-        if (yearCompare != 0) return yearCompare;
-        
-        int monthCompare = parts1[1].compareTo(parts2[1]);
-        if (monthCompare != 0) return monthCompare;
-        
-        return parts1[0].compareTo(parts2[0]);
     }
 }
 
