@@ -219,7 +219,7 @@ public class ProjectA {
                             } else if (option == 2) {
                                 System.out.println("Current Expense Records:");
                                 displayExpenses(account);
-                                System.out.print("Enter expense record number to delete (0 to cancel): ");
+                                System.out.println("Enter expense record number to delete (0 to cancel): ");
                                 int expenseIndex = In.nextInt();
                                 
                                 if (expenseIndex == 0) {
