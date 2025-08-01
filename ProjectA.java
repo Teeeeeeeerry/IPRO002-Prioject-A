@@ -346,6 +346,8 @@ abstract class Transaction implements Printable {
     protected final String description;
     protected final String date;
 
+
+    //filter
     static final Comparator<Transaction> DATE_COMPARATOR = 
         Comparator.comparing(Transaction::getYear)
                  .thenComparing(Transaction::getMonth)
