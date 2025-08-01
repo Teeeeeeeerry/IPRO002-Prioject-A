@@ -346,10 +346,22 @@ abstract class Transaction implements Printable {
     protected final String description;
     protected final String date;
 
-     static final Comparator<Transaction> DATE_COMPARATOR = 
-        Comparator.comparing((Transaction t) -> t.getDate().split("-")[2])
-                 .thenComparing(t -> t.getDate().split("-")[1])           
-                 .thenComparing(t -> t.getDate().split("-")[0]); 
+    static final Comparator<Transaction> DATE_COMPARATOR = 
+        Comparator.comparing(Transaction::getYear)
+                 .thenComparing(Transaction::getMonth)
+                 .thenComparing(Transaction::getDay);
+
+    private int getYear() {
+        return Integer.parseInt(date.split("-")[2]);
+    }
+    
+    private int getMonth() {
+        return Integer.parseInt(date.split("-")[1]);
+    }
+    
+    private int getDay() {
+        return Integer.parseInt(date.split("-")[0]);
+    }
 
     // made sure to add some throw and catch exception errors if the user has any invalid values
     public Transaction(double amount, String description, String date) {
