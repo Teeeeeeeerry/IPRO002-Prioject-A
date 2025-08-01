@@ -309,13 +309,6 @@ class Account {
         System.out.println("Expense added successfully");
     }
 
-    // public void removeTransaction(int index) {
-    //     if (index >= 0 && index < transactions.size()) {
-    //         transactions.remove(index);
-    //         System.out.println("Transaction removed");
-    //     }
-    // }
-
     public void removeTransaction(Income income) {
         transactions.remove(income);
         System.out.println("Transaction removed");
@@ -339,6 +332,14 @@ class Account {
     public String getName() {
         return name;
     }
+
+    static final Comparator<Transaction> DATE_COMPARATOR = 
+        Comparator.comparing((Transaction t) -> t.getDate().split("-")[2]) 
+                 .thenComparing(t -> t.getDate().split("-")[1])            
+                 .thenComparing(t -> t.getDate().split("-")[0]);           
+
+    public void sortTransactions() {
+        Collections.sort(transactions, DATE_COMPARATOR);
    
 }
 
