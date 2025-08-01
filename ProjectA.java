@@ -175,58 +175,7 @@ public class ProjectA {
 
     }
 
-    //old one
-    // public static void deleteTransaction(Account account) {
-    //     System.out.println("\n===== Delete Transaction =====");
-    //     System.out.println("1. Delete Income");
-    //     System.out.println("2. Delete Expense");
-        
-    //     int option = In.nextInt();
 
-    //     if (option == 1) {
-    //         System.out.println("Current Income Records:");
-    //         displayIncomes(account);
-    //         System.out.print("Enter income record number to delete: ");
-    //         int incomeIndex = In.nextInt();
-            
-    //         List<Income> incomes = new ArrayList<>();
-    //         for (Transaction t : account.getTransactions()) {
-    //             if (t instanceof Income) {
-    //                 incomes.add((Income)t);
-    //             }
-    //         }
-            
-    //         if (incomeIndex > 0 && incomeIndex <= incomes.size()) {
-    //             account.removeTransaction(incomes.get(incomeIndex - 1));
-    //         } else {
-    //             System.out.println("Error: Invalid number");
-    //         }
-    //     } 
-    //     else if (option == 2) {
-    //         System.out.println("Current Expense Records:");
-    //         displayExpenses(account);
-    //         System.out.print("Enter expense record number to delete: ");
-    //         int expenseIndex = In.nextInt();
-            
-    //         List<Expense> expenses = new ArrayList<>();
-    //         for (Transaction t : account.getTransactions()) {
-    //             if (t instanceof Expense) {
-    //                 expenses.add((Expense)t);
-    //             }
-    //         }
-            
-    //         if (expenseIndex > 0 && expenseIndex <= expenses.size()) {
-    //             account.removeTransaction(expenses.get(expenseIndex - 1));
-    //         } else {
-    //             System.out.println("Error: Invalid number");
-    //         }
-    //     } 
-    //     else {
-    //         System.out.println("Error: Invalid option");
-    //     }
-    // }
-
-    //new one
     public static void deleteTransaction(Account account) {
         boolean validOption = false;
         while (!validOption) {
