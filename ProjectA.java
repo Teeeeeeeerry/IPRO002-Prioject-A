@@ -359,12 +359,6 @@ class Account {
         transactions.add(expense);
         System.out.println("Expense added successfully");
     }
-    
-    // public void addTransaction(double amount, String description, String date, Category category) {
-    //     Transaction transaction = new Transaction (amount, description, date, category);
-    //     transactions.add(transaction);
-    //     System.out.println("Transaction added successfully");
-    // }
 
     // public void removeTransaction(int index) {
     //     if (index >= 0 && index < transactions.size()) {
