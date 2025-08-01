@@ -333,13 +333,13 @@ class Account {
         return name;
     }
 
-    static final Comparator<Transaction> DATE_COMPARATOR = 
-        Comparator.comparing((Transaction t) -> t.getDate().split("-")[2]) 
-                 .thenComparing(t -> t.getDate().split("-")[1])            
-                 .thenComparing(t -> t.getDate().split("-")[0]);           
+    // static final Comparator<Transaction> DATE_COMPARATOR = 
+    //     Comparator.comparing((Transaction t) -> t.getDate().split("-")[2]) 
+    //              .thenComparing(t -> t.getDate().split("-")[1])            
+    //              .thenComparing(t -> t.getDate().split("-")[0]);           
 
-    public void sortTransactions() {
-        Collections.sort(transactions, DATE_COMPARATOR);
+    // public void sortTransactions() {
+    //     Collections.sort(transactions, DATE_COMPARATOR);
    
 }
 
