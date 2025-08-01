@@ -393,8 +393,6 @@ abstract class Transaction implements Printable {
         System.out.println("- Date: " + date);
         System.out.println("- Description: " + description);
     }
-    
-
 
 }
 
