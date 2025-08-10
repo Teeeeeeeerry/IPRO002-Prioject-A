@@ -179,8 +179,8 @@ public class ProjectB extends Application {
             TextField descField = new TextField();
             descField.setPromptText("Description");
 
-            DatePicker datePicker = new DatePicker();
-            datePicker.setPromptText("Date");
+            TextField dateField = new TextField();
+            dateField.setPromptText("dd-MM-yyyy");
 
             ComboBox<Category> categoryCombo = new ComboBox<>();
             categoryCombo.getItems().addAll(Category.values());
@@ -220,8 +220,23 @@ public class ProjectB extends Application {
                 try {
                     double amount = Double.parseDouble(amountField.getText());
                     String description = descField.getText();
-                    String date = datePicker.getValue() != null ? 
-                        datePicker.getValue().toString() : new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+                    String dateInput = dateField.getText().trim();
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                    sdf.setLenient(false);
+
+                    String date;
+                    try {
+                        Date parsed = sdf.parse(dateInput);
+                        date = sdf.format(parsed);
+                    } catch (ParseException ex) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Invalid Date");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Format incorrect, correct format is: dd-MM-yyyy");
+                        alert.showAndWait();
+                        return;
+                    }
+
                     Category category = categoryCombo.getValue();
 
                     if (description.isEmpty() || category == null) {
