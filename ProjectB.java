@@ -12,8 +12,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
-
-
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
@@ -274,7 +273,7 @@ public class ProjectB extends Application {
             grid.add(new Label("Description:"), 0, 1);
             grid.add(descField, 1, 1);
             grid.add(new Label("Date:"), 0, 2);
-            grid.add(datePicker, 1, 2);
+            grid.add(dateField, 1, 2);
             grid.add(new Label("Category:"), 0, 3);
             grid.add(categoryCombo, 1, 3);
 
