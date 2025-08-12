@@ -37,28 +37,28 @@ public class View {
     }
 
     private void createAndLayoutControls() {
-        // 列：Type
+        //Type
         TableColumn<Transaction, String> typeCol = new TableColumn<>("Type");
         typeCol.setCellValueFactory(cellData ->
                 new javafx.beans.property.SimpleStringProperty(
                         cellData.getValue() instanceof Income ? "Income" : "Expense"));
 
-        // 列：Amount
+        //Amount
         TableColumn<Transaction, Double> amountCol = new TableColumn<>("Amount");
         amountCol.setCellValueFactory(c ->
                 new javafx.beans.property.SimpleDoubleProperty(c.getValue().getAmount()).asObject());
 
-        // 列：Description
+        //Description
         TableColumn<Transaction, String> descCol = new TableColumn<>("Description");
         descCol.setCellValueFactory(c ->
                 new javafx.beans.property.SimpleStringProperty(c.getValue().getDescription()));
 
-        // 列：Date
+        //Date
         TableColumn<Transaction, String> dateCol = new TableColumn<>("Date");
         dateCol.setCellValueFactory(c ->
                 new javafx.beans.property.SimpleStringProperty(c.getValue().getDate()));
 
-        // 列：Category（根据 Income/Expense 取对应分类）
+        //Category (BASE ON INCOME/EXPENSE TAKING THE VALUE)
         TableColumn<Transaction, String> categoryCol = new TableColumn<>("Category");
         categoryCol.setCellValueFactory(cellData -> {
             if (cellData.getValue() instanceof Income) {
@@ -72,7 +72,7 @@ public class View {
         transactionTable.getColumns().addAll(typeCol, amountCol, descCol, dateCol, categoryCol);
         transactionTable.setItems(controller.getTransactions());
 
-        // 按钮区
+        //BUTTON
         Button addIncomeBtn = new Button("Add Income");
         addIncomeBtn.setOnAction(e -> createTransactionForm(true));
 
@@ -116,7 +116,7 @@ public class View {
         dateField.setPromptText("dd-MM-yyyy");
 
         ComboBox<Category> categoryCombo = new ComboBox<>();
-        // 只展示收入/支出对应的分类
+        //MAKE SURE INCOME WITH INCOME, EXPENSE WITH EXPENSE
         for (Category c : Category.values()) {
             if ((isIncome && c.isIncome()) || (!isIncome && c.isExpense())) {
                 categoryCombo.getItems().add(c);
@@ -144,7 +144,7 @@ public class View {
                 String description = descField.getText();
                 String dateInput = dateField.getText().trim();
 
-                // 严格校验 dd-MM-yyyy
+                //DATE TYPE dd-MM-yyyy
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                 sdf.setLenient(false);
                 String date;

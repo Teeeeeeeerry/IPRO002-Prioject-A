@@ -47,7 +47,7 @@ public class Model {
     }
 }
 
-/* ===================== Project A 的领域类（保持原意） ===================== */
+//ALL COME FROM PROJECT A
 
 class Account {
     private final String name;
