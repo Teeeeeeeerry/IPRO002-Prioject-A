@@ -1,0 +1,18 @@
+{
+    "java.project.referencedLibraries": [
+        "c:\\Users\\patma\\OneDrive\\Documents\\GitHub\\IPRO002-Prioject-A\\javafx-sdk-24.0.2\\lib\\javafx.fxml.jar",
+        "c:\\Users\\patma\\OneDrive\\Documents\\GitHub\\IPRO002-Prioject-A\\javafx-sdk-24.0.2\\lib\\jdk.jsobject.jar",
+        "c:\\Users\\patma\\OneDrive\\Documents\\GitHub\\IPRO002-Prioject-A\\javafx-sdk-24.0.2\\lib\\javafx.web.jar",
+        "c:\\Users\\patma\\OneDrive\\Documents\\GitHub\\IPRO002-Prioject-A\\javafx-sdk-24.0.2\\lib\\javafx.media.jar",
+        "c:\\Users\\patma\\OneDrive\\Documents\\GitHub\\IPRO002-Prioject-A\\javafx-sdk-24.0.2\\lib\\jfx.incubator.richtext.jar",
+        "c:\\Users\\patma\\OneDrive\\Documents\\GitHub\\IPRO002-Prioject-A\\javafx-sdk-24.0.2\\lib\\javafx.base.jar",
+        "c:\\Users\\patma\\OneDrive\\Documents\\GitHub\\IPRO002-Prioject-A\\javafx-sdk-24.0.2\\lib\\jfx.incubator.input.jar",
+        "c:\\Users\\patma\\OneDrive\\Documents\\GitHub\\IPRO002-Prioject-A\\javafx-sdk-24.0.2\\lib\\javafx.swing.jar",
+        "c:\\Users\\patma\\OneDrive\\Documents\\GitHub\\IPRO002-Prioject-A\\javafx-sdk-24.0.2\\lib\\javafx.graphics.jar",
+        "c:\\Users\\patma\\OneDrive\\Documents\\GitHub\\IPRO002-Prioject-A\\javafx-sdk-24.0.2\\lib\\javafx.controls.jar",
+        "c:\\Users\\patma\\OneDrive\\Documents\\GitHub\\IPRO002-Prioject-A\\javafx-sdk-24.0.2\\lib\\javafx-swt.jar"
+    ],
+    "java.project.sourcePaths": [
+        "."
+    ]
+}

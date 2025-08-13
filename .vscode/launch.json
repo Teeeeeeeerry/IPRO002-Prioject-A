@@ -1,0 +1,12 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "ProjectB",
+            "request": "launch",
+            "mainClass": "ProjectB",
+            "projectName": "IPRO002-Prioject-A_d7b92a8",
+            "vmArgs": "--module-path \"c:\\Users\\patma\\OneDrive\\Documents\\GitHub\\IPRO002-Prioject-A\\javafx-sdk-24.0.2\\lib\" --add-modules javafx.controls,javafx.fxml"
+        }
+    ]
+}
