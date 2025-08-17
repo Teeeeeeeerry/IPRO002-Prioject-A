@@ -113,7 +113,7 @@ public class View {
         descField.setPromptText("Description");
 
         TextField dateField = new TextField();
-        dateField.setPromptText("dd-MM-yyyy");
+        dateField.setPromptText("DD-MM-YYYY");
 
         ComboBox<Category> categoryCombo = new ComboBox<>();
         // 只展示收入/支出对应的分类
@@ -145,7 +145,7 @@ public class View {
                 String dateInput = dateField.getText().trim();
 
                 // 严格校验 dd-MM-yyyy
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("DD-MM-YYYY");
                 sdf.setLenient(false);
                 String date;
                 try {
@@ -155,7 +155,7 @@ public class View {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Invalid Date");
                     alert.setHeaderText(null);
-                    alert.setContentText("Format incorrect, correct format is: dd-MM-yyyy");
+                    alert.setContentText("Format incorrect, correct format is: DD-MM-YYYY");
                     alert.showAndWait();
                     return;
                 }
