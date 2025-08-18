@@ -47,8 +47,6 @@ public class Model {
     }
 }
 
-/* ===================== Project A 的领域类（保持原意） ===================== */
-
 class Account {
     private final String name;
     private final java.util.List<Transaction> transactions = new java.util.ArrayList<>();
