@@ -144,7 +144,7 @@ public class View {
                 String dateInput = dateField.getText().trim();
 
                 //dd-MM-yyyy
-                SimpleDateFormat sdf = new SimpleDateFormat("DD-MM-YYYY");
+                SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
                 sdf.setLenient(false);
                 String date;
                 try {
@@ -154,7 +154,7 @@ public class View {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Invalid Date");
                     alert.setHeaderText(null);
-                    alert.setContentText("Format incorrect, correct format is: DD-MM-YYYY");
+                    alert.setContentText("Format incorrect, correct format is: YYYY-MM-DD");
                     alert.showAndWait();
                     return;
                 }

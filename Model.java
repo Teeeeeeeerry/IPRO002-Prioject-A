@@ -113,7 +113,7 @@ abstract class Transaction {
         int value = 0;
         for (int i = start; i <= end; i++) {
             char c = date.charAt(i);
-            if (c != '-') { // ignore dashes
+            if (c != '-') { 
                 value = value * 10 + (c - '0');
             }
         }
@@ -121,15 +121,15 @@ abstract class Transaction {
     }
 
     private int getYear() {
-        return extractNumber(0, 3); // YYYY
+        return extractNumber(0, 3);
     }
 
     private int getMonth() {
-        return extractNumber(5, 6); // MM
+        return extractNumber(5, 6);
     }
 
     private int getDay() {
-        return extractNumber(8, 9); // DD
+        return extractNumber(8, 9);
     }
 
     public abstract void displayDetails();
