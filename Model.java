@@ -109,16 +109,27 @@ abstract class Transaction {
         this.date = date;
     }
 
+    private int extractNumber(int start, int end) {
+        int value = 0;
+        for (int i = start; i <= end; i++) {
+            char c = date.charAt(i);
+            if (c != '-') { // ignore dashes
+                value = value * 10 + (c - '0');
+            }
+        }
+        return value;
+    }
+
     private int getYear() {
-        return Integer.parseInt(date.split("-")[2]);
+        return extractNumber(0, 3); // YYYY
     }
 
     private int getMonth() {
-        return Integer.parseInt(date.split("-")[1]);
+        return extractNumber(5, 6); // MM
     }
 
     private int getDay() {
-        return Integer.parseInt(date.split("-")[0]);
+        return extractNumber(8, 9); // DD
     }
 
     public abstract void displayDetails();
@@ -244,11 +255,11 @@ class ReportGenerator {
 
 class SampleTransactions {
     public static void createSampleData(Account account) {
-        account.addTransaction(new Income(5000.00, "Monthly Salary", "15-03-2023", Category.SALARY));
-        account.addTransaction(new Income(1000.00, "Yearly Bonus", "20-12-2023", Category.BONUS));
-        account.addTransaction(new Income(250.50, "Stock Dividends", "05-07-2023", Category.INVESTMENT));
-        account.addTransaction(new Expense(150.75, "Grocery Shopping", "10-01-2023", Category.FOOD));
-        account.addTransaction(new Expense(45.00, "Bus Pass", "03-11-2023", Category.TRANSPORT));
-        account.addTransaction(new Expense(120.00, "Movie Tickets", "25-05-2023", Category.ENTERTAINMENT));
+        account.addTransaction(new Income(5000.00, "Monthly Salary", "2023-03-15", Category.SALARY));
+        account.addTransaction(new Income(1000.00, "Yearly Bonus", "2023-12-03", Category.BONUS));
+        account.addTransaction(new Income(250.50, "Stock Dividends", "2023-05-07", Category.INVESTMENT));
+        account.addTransaction(new Expense(150.75, "Grocery Shopping", "2023-01-10", Category.FOOD));
+        account.addTransaction(new Expense(45.00, "Bus Pass", "2023-11-03", Category.TRANSPORT));
+        account.addTransaction(new Expense(120.00, "Movie Tickets", "2023-05-25", Category.ENTERTAINMENT));
     }
 }
