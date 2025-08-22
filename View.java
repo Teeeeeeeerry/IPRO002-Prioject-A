@@ -3,7 +3,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -112,7 +114,7 @@ public class View {
         descField.setPromptText("Description");
 
         TextField dateField = new TextField();
-        dateField.setPromptText("DD-MM-YYYY");
+        dateField.setPromptText("YYYY-MM-DD");
 
         ComboBox<Category> categoryCombo = new ComboBox<>();
 
@@ -136,6 +138,34 @@ public class View {
             }
         });
 
+        // repleace Alert
+        Label msgLabel = new Label();
+        msgLabel.setWrapText(true);
+        msgLabel.getStyleClass().add("form-msg");
+        msgLabel.setVisible(false);
+        msgLabel.setManaged(false);
+
+        Runnable clearMsg = () -> {
+            msgLabel.setText("");
+            msgLabel.setVisible(false);
+            msgLabel.setManaged(false);
+            msgLabel.getStyleClass().remove("error");
+            msgLabel.getStyleClass().remove("info");
+        };
+        java.util.function.Consumer<String> showError = (text) -> {
+            msgLabel.setText(text);
+            if (!msgLabel.getStyleClass().contains("error")) msgLabel.getStyleClass().add("error");
+            msgLabel.getStyleClass().remove("info");
+            msgLabel.setVisible(true);
+            msgLabel.setManaged(true);
+        };
+
+        // text-base alert
+        amountField.setOnKeyTyped(e -> clearMsg.run());
+        descField.setOnKeyTyped(e -> clearMsg.run());
+        dateField.setOnKeyTyped(e -> clearMsg.run());
+        categoryCombo.valueProperty().addListener((obs, o, n) -> clearMsg.run());
+
         Button submitBtn = new Button("Submit");
         submitBtn.setOnAction(e -> {
             try {
@@ -143,7 +173,6 @@ public class View {
                 String description = descField.getText();
                 String dateInput = dateField.getText().trim();
 
-                //dd-MM-yyyy
                 SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
                 sdf.setLenient(false);
                 String date;
@@ -151,11 +180,7 @@ public class View {
                     Date parsed = sdf.parse(dateInput);
                     date = sdf.format(parsed);
                 } catch (ParseException ex) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Invalid Date");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Format incorrect, correct format is: YYYY-MM-DD");
-                    alert.showAndWait();
+                    showError.accept("Format incorrect, correct format is: YYYY-MM-DD");
                     return;
                 }
 
@@ -171,34 +196,56 @@ public class View {
                 controller.addTransaction(transaction);
                 stage.close();
             } catch (Exception ex) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Invalid Input");
-                alert.setContentText(ex.getMessage());
-                alert.showAndWait();
+                showError.accept("Invalid Input");
             }
         });
 
         Button cancelBtn = new Button("Cancel");
         cancelBtn.setOnAction(e -> stage.close());
 
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
+        // new Pane layout
+        Pane grid = new Pane();
         grid.setPadding(new Insets(20));
-        grid.add(new Label("Amount:"), 0, 0);
-        grid.add(amountField, 1, 0);
-        grid.add(new Label("Description:"), 0, 1);
-        grid.add(descField, 1, 1);
-        grid.add(new Label("Date:"), 0, 2);
-        grid.add(dateField, 1, 2);
-        grid.add(new Label("Category:"), 0, 3);
-        grid.add(categoryCombo, 1, 3);
+
+        // Row 0
+        Label lblAmount = new Label("Amount:");
+        lblAmount.setLayoutX(0);
+        lblAmount.setLayoutY(0);
+        amountField.setLayoutX(100);
+        amountField.setLayoutY(0);
+
+        // Row 1
+        Label lblDesc = new Label("Description:");
+        lblDesc.setLayoutX(0);
+        lblDesc.setLayoutY(35);
+        descField.setLayoutX(100);
+        descField.setLayoutY(35);
+
+        // Row 2
+        Label lblDate = new Label("Date:");
+        lblDate.setLayoutX(0);
+        lblDate.setLayoutY(70);
+        dateField.setLayoutX(100);
+        dateField.setLayoutY(70);
+
+        // Row 3
+        Label lblCategory = new Label("Category:");
+        lblCategory.setLayoutX(0);
+        lblCategory.setLayoutY(105);
+        categoryCombo.setLayoutX(100);
+        categoryCombo.setLayoutY(105);
+
+        grid.getChildren().addAll(
+            lblAmount, amountField,
+            lblDesc,   descField,
+            lblDate,   dateField,
+            lblCategory, categoryCombo
+        );
 
         HBox buttons = new HBox(10, submitBtn, cancelBtn);
         buttons.setAlignment(Pos.CENTER);
 
-        VBox root = new VBox(10, grid, buttons);
+        VBox root = new VBox(10, grid, msgLabel, buttons);
         root.setAlignment(Pos.CENTER);
         root.setPadding(new Insets(10));
 
