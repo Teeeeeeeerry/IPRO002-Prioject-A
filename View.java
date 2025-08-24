@@ -19,6 +19,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+// View: builds UI, captures user event,
+// calls Controller, observes Model
+// no business logic here
+
 public class View {
     private VBox view;
     private TableView<Transaction> transactionTable;
@@ -75,17 +79,23 @@ public class View {
             }
         });
 
+        // Build TableView (View responsibility only; no business logic here)
         transactionTable = new TableView<>();
         transactionTable.getColumns().addAll(typeCol, amountCol, descCol, dateCol, categoryCol);
+        // Binding: View observes Model via ObservableList -> TableView auto-updates
         transactionTable.setItems(controller.getTransactions());
 
     
+        // MVC Step 1 (View): capture user event (Add Income)
         Button addIncomeBtn = new Button("Add Income");
         addIncomeBtn.setOnAction(e -> createTransactionForm(true));
 
+        // MVC Step 1 (View): capture user event (Add Expense)
         Button addExpenseBtn = new Button("Add Expense");
         addExpenseBtn.setOnAction(e -> createTransactionForm(false));
 
+        // MVC Step 1 (View): capture user event (Delete)
+        // MVC Step 2 (Controller): delegate business action
         Button deleteBtn = new Button("Delete Selected");
         deleteBtn.setOnAction(e -> {
             Transaction selected = transactionTable.getSelectionModel().getSelectedItem();
@@ -94,6 +104,8 @@ public class View {
             }
         });
 
+        // MVC Step 1 (View): capture user event (Sort)
+        // MVC Step 2 (Controller): delegate business action
         Button sortBtn = new Button("Sort by Date");
         sortBtn.setOnAction(e -> controller.sortTransactions());
 
@@ -119,6 +131,7 @@ public class View {
         TextField descField = new TextField();
         descField.setPromptText("Description");
 
+        // Use yyyy-MM-dd as the single canonical format (prompt, parse, display)
         TextField dateField = new TextField();
         dateField.setPromptText("YYYY-MM-DD");
 
@@ -179,6 +192,7 @@ public class View {
                 String description = descField.getText();
                 String dateInput = dateField.getText().trim();
 
+                // Parse strictly
                 SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
                 sdf.setLenient(false);
                 String date;
@@ -199,6 +213,8 @@ public class View {
                         ? new Income(amount, description, date, category)
                         : new Expense(amount, description, date, category);
 
+                // MVC Step 2 (Controller): validate & orchestrate call to Model
+                // On success close modal; on invalid input keep window open and show inline error Label (no Alert)
                 controller.addTransaction(transaction);
                 stage.close();
             } catch (Exception ex) {
@@ -260,11 +276,14 @@ public class View {
     }
 
     private void showReport() {
+        // Modal form for input (View builds UI only)
         Stage stage = new Stage();
         stage.initOwner(primaryStage);
+        // Block main window until user finishes
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Financial Report");
 
+        // MVC Step 2 (Controller): query snapshot from Model (no UI in Controller)
         TextArea reportArea = new TextArea(controller.generateReport());
         reportArea.setEditable(false);
         reportArea.setWrapText(true);
